@@ -13,7 +13,9 @@ defmodule Bamboo.AliyunAdapter do
         region_id: "cn-hangzhou",
         adapter: Bamboo.AliyunAdapter,
         access_key_id: "sample",
-        access_key_secret: "secret"
+        access_key_secret: "secret",
+        address_type: 1,
+        reply_to_address: true
 
       # Define a Mailer. Maybe in lib/my_app/mailer.ex
       defmodule MyApp.Mailer do
@@ -36,7 +38,7 @@ defmodule Bamboo.AliyunAdapter do
 
     body =
       email
-      |> to_aliyun_dm_body()
+      |> to_aliyun_body(config)
       |> append_shared_info(config)
       |> sign(config)
 
@@ -52,7 +54,7 @@ defmodule Bamboo.AliyunAdapter do
 
   @impl Bamboo.Adapter
   def handle_config(config) do
-    for setting <- [:uri, :version, :region_id, :access_key_id, :access_key_secret] do
+    for setting <- [:uri, :version, :region_id, :access_key_id, :access_key_secret, :address_type, :reply_to_address] do
       if config[setting] in [nil, ""] do
         raise_missing_setting_error(config, setting)
       end
@@ -121,8 +123,7 @@ defmodule Bamboo.AliyunAdapter do
     |> :base64.encode()
   end
 
-  defp to_aliyun_dm_body(%Email{} = email) do
-    # send standard email
+  defp to_aliyun_body(%Email{} = email, config) do
     email
     |> Map.from_struct
     |> put_subject(email)
@@ -130,6 +131,8 @@ defmodule Bamboo.AliyunAdapter do
     |> put_to(email)
     |> put_html_body(email)
     |> put_text_body(email)
+    |> Map.put(:AddressType, config.address_type)
+    |> Map.put(:ReplyToAddress, config.reply_to_address)
     |> filter_non_aliyun_dm_fields()
   end
 
@@ -148,8 +151,6 @@ defmodule Bamboo.AliyunAdapter do
         |> Map.put(:FromAlias, name)
         |> Map.put(:AccountName, email)
     end
-    |> Map.put(:AddressType, 1)
-    |> Map.put(:ReplyToAddress, false)
   end
 
   defp put_to(body, %Email{to: to}) do

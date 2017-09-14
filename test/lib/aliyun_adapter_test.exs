@@ -11,7 +11,9 @@ defmodule Bamboo.AliyunAdapterTest do
     region_id: "cn-hangzhou",
     adapter: Bamboo.AliyunAdapter,
     access_key_id: "sample",
-    access_key_secret: "secret"
+    access_key_secret: "secret",
+    address_type: 1,
+    reply_to_address: true
   }
 
   test "deliver/2 sends from, html and text body, subject" do

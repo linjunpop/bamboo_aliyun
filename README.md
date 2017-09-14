@@ -17,9 +17,14 @@ In `config/config.exs`, or `config.prod.exs`, etc.
 
 ```elixir
 config :my_app, MyApp.Mailer,
+  uri: "https://dm.aliyuncs.com",
+  version: "2015-11-23",
+  region_id: "cn-hangzhou",
   adapter: Bamboo.AliyunAdapter,
-  api_user: "my_api_user",
-  api_key: "my_api_key"
+  access_key_id: "sample",
+  access_key_secret: "secret",
+  address_type: 1,
+  reply_to_address: true
 ```
 
 ## Usage
