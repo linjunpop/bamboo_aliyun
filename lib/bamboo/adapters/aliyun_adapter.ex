@@ -15,7 +15,8 @@ defmodule Bamboo.AliyunAdapter do
         access_key_id: "sample",
         access_key_secret: "secret",
         address_type: 1,
-        reply_to_address: true
+        reply_to_address: true,
+        click_trace: 1
 
       # Define a Mailer. Maybe in lib/my_app/mailer.ex
       defmodule MyApp.Mailer do
@@ -54,7 +55,7 @@ defmodule Bamboo.AliyunAdapter do
 
   @impl Bamboo.Adapter
   def handle_config(config) do
-    for setting <- [:uri, :version, :region_id, :access_key_id, :access_key_secret, :address_type, :reply_to_address] do
+    for setting <- [:uri, :version, :region_id, :access_key_id, :access_key_secret, :address_type, :reply_to_address, :click_trace] do
       if config[setting] in [nil, ""] do
         raise_missing_setting_error(config, setting)
       end
@@ -133,6 +134,7 @@ defmodule Bamboo.AliyunAdapter do
     |> put_text_body(email)
     |> Map.put(:AddressType, config.address_type)
     |> Map.put(:ReplyToAddress, config.reply_to_address)
+    |> Map.put(:ClickTrace, config.click_trace)
     |> filter_non_aliyun_dm_fields()
   end
 

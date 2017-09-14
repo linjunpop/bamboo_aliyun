@@ -24,7 +24,8 @@ config :my_app, MyApp.Mailer,
   access_key_id: "sample",
   access_key_secret: "secret",
   address_type: 1,
-  reply_to_address: true
+  reply_to_address: true,
+  click_trace: 1
 ```
 
 ## Usage

@@ -13,7 +13,8 @@ defmodule Bamboo.AliyunAdapterTest do
     access_key_id: "sample",
     access_key_secret: "secret",
     address_type: 1,
-    reply_to_address: true
+    reply_to_address: true,
+    click_trace: 1
   }
 
   test "deliver/2 sends from, html and text body, subject" do
