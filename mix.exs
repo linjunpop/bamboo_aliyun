@@ -1,18 +1,18 @@
-defmodule Bamboo.Sendcloud.Mixfile do
+defmodule Bamboo.Aliyun.Mixfile do
   use Mix.Project
 
   @version "0.2.0"
-  @project_url "https://github.com/linjunpop/bamboo_sendcloud"
+  @project_url "https://github.com/linjunpop/bamboo_aliyun"
 
   def project do
     [
-      app: :bamboo_sendcloud,
+      app: :bamboo_aliyun,
       version: @version,
       elixir: "~> 1.4",
       source_url: @project_url,
       homepage_url: @project_url,
-      name: "Bamboo Sendcloud Adapter",
-      description: "A Bamboo adapter for Sendcloud",
+      name: "Bamboo Aliyun Adapter",
+      description: "A Bamboo adapter for Aliyun",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       package: package(),
@@ -44,12 +44,11 @@ defmodule Bamboo.Sendcloud.Mixfile do
     [
       {:bamboo, "~> 0.5"},
       {:hackney, "~> 1.6"},
-      {:poison, ">= 1.5.0"},
-      {:plug, "~> 1.0"},
+
       {:cowboy, "~> 1.0", only: [:test, :dev]},
-      {:ex_doc, "~> 0.13", only: :dev},
-      {:credo, "~> 0.7", only: [:dev, :test]},
-      {:exvcr, "~> 0.8", only: :test}
+      {:ex_doc, "~> 0.16", only: :dev},
+      {:credo, "~> 0.8", only: [:dev, :test]},
+      {:exvcr, "~> 0.9", only: :test}
     ]
   end
 

@@ -1,15 +1,15 @@
-# Bamboo.SendcloudAdapter
+# Bamboo.AliyunAdapter
 
-A [Sendcloud](https://www.sendcloud.net) adapter for the [Bamboo](https://github.com/thoughtbot/bamboo).
+An [Aliyun](https://www.aliyun.com/product/directmail?spm=5176.8142029.388261.228.dKDNYN) adapter for the [Bamboo](https://github.com/thoughtbot/bamboo).
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `bamboo_sendcloud` to your list of dependencies in `mix.exs`:
+The package can be installed
+by adding `bamboo_aliyun` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:bamboo_sendcloud, "~> 0.2.0"}]
+  [{:bamboo_aliyun, "~> 0.1.0"}]
 end
 ```
 
@@ -17,7 +17,7 @@ In `config/config.exs`, or `config.prod.exs`, etc.
 
 ```elixir
 config :my_app, MyApp.Mailer,
-  adapter: Bamboo.SendcloudAdapter,
+  adapter: Bamboo.AliyunAdapter,
   api_user: "my_api_user",
   api_key: "my_api_key"
 ```
@@ -38,19 +38,7 @@ email =
   |> html_body("<strong>Welcome to the app</strong>")
 ```
 
-### Send template email
-
-```elixir
-import Bamboo.Email
-
-email =
-  new_email()
-  |> from({"Bender", "notify@send1.example.com"})
-  |> to(user)
-  |> SendcloudHelper.template("reset_password", %{"%link%" => [reset_password_link]})
-```
-
 ## Docs
 
-[https://hexdocs.pm/bamboo_sendcloud](https://hexdocs.pm/bamboo_sendcloud).
+[https://hexdocs.pm/bamboo_aliyun](https://hexdocs.pm/bamboo_aliyun).
 

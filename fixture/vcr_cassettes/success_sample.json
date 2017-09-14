@@ -1,7 +1,7 @@
 [
   {
     "request": {
-      "body": "apiKey=test&apiUser=test&from=Test+From%3Ctest%40test.sendcloud.org%3E&headers=%7B%22Reply-To%22%3A%22reply%40example.com%22%7D&html=HTML+BODY&plain=TEXT+BODY&subject=My+Subject&to=jun%40example.com",
+      "body": "Signature=BPCHZQxTpXKvS%2BON4YgH3SZKkUk%3D&RegionId=cn-hangzhou&Timestamp=2017-09-14T02%3A35%3A10.326621Z&SignatureNonce=w2xYa0bWQ%2B76Oawj1pVtCHUI1gCSQxgZ&SignatureVersion=1.0&SignatureMethod=HMAC-SHA1&AccessKeyId=sample&Version=2015-11-23&Format=JSON&Action=SingleSendMail&AccountName=test%40example.com&AddressType=1&FromAlias=Test+From&HtmlBody=HTML+BODY&ReplyToAddress=false&Subject=My+Subject&TextBody=TEXT+BODY&ToAddress=jun%40example.com",
       "headers": {
         "Content-Type": "application/x-www-form-urlencoded"
       },
@@ -10,15 +10,20 @@
         "with_body": true
       },
       "request_body": "",
-      "url": "http://api.sendcloud.net/apiv2/mail/send"
+      "url": "https://dm.aliyuncs.com"
     },
     "response": {
-      "body": "{\"result\":true,\"statusCode\":200,\"message\":\"请求成功\",\"info\":{\"emailIdList\":[\"1490660342514_27290_14064_6375.sc-10_9_12_206-inbound0$jun@example.com\"]}}",
+      "body": "{\"EnvId\":\"19678882852\",\"RequestId\":\"25CBB027-4EB3-4513-A174-B6C74231C1E1\"}",
       "headers": {
-        "Server": "nginx/1.6.3",
-        "Date": "Tue, 28 Mar 2017 00:19:02 GMT",
-        "Content-Type": "application/json;charset=UTF-8",
-        "Transfer-Encoding": "chunked"
+        "Date": "Thu, 14 Sep 2017 02:35:11 GMT",
+        "Content-Type": "application/json; charset=UTF-8",
+        "Content-Length": "74",
+        "Connection": "close",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, X-Sequence, _aop_secret, _aop_signature",
+        "Access-Control-Max-Age": "172800",
+        "Server": "Jetty(7.2.2.v20101205)"
       },
       "status_code": 200,
       "type": "ok"

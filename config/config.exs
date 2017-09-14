@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :bamboo_sendcloud, key: :value
+#     config :bamboo_aliyun, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:bamboo_sendcloud, :key)
+#     Application.get_env(:bamboo_aliyun, :key)
 #
 # Or configure a 3rd-party app:
 #
