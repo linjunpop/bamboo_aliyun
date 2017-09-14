@@ -8,10 +8,10 @@ defmodule Bamboo.AliyunAdapter do
 
       # In config/config.exs, or config.prod.exs, etc.
       config :my_app, MyApp.Mailer,
+        adapter: Bamboo.AliyunAdapter,
         uri: "https://dm.aliyuncs.com",
         version: "2015-11-23",
         region_id: "cn-hangzhou",
-        adapter: Bamboo.AliyunAdapter,
         access_key_id: "sample",
         access_key_secret: "secret",
         address_type: 1,

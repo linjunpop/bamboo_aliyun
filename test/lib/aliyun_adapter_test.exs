@@ -6,10 +6,10 @@ defmodule Bamboo.AliyunAdapterTest do
   alias Bamboo.AliyunAdapter
 
   @config %{
+    adapter: Bamboo.AliyunAdapter,
     uri: "https://dm.aliyuncs.com",
     version: "2015-11-23",
     region_id: "cn-hangzhou",
-    adapter: Bamboo.AliyunAdapter,
     access_key_id: "sample",
     access_key_secret: "secret",
     address_type: 1,
