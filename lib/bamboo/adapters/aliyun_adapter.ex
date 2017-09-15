@@ -1,27 +1,22 @@
 defmodule Bamboo.AliyunAdapter do
   @moduledoc """
-  Sends email using [Aliyun’s API](https://www.aliyun.com/product/directmail?spm=5176.8142029.388261.228.dKDNYN).
-
-  Use this adapter to send emails through Aliyun’s API.
+  Bamboo adapter to Sends emails through [Aliyun’s API](https://www.aliyun.com/product/directmail?spm=5176.8142029.388261.228.dKDNYN).
 
   ## Example config
 
-      # In config/config.exs, or config.prod.exs, etc.
-      config :my_app, MyApp.Mailer,
-        adapter: Bamboo.AliyunAdapter,
-        uri: "https://dm.aliyuncs.com",
-        version: "2015-11-23",
-        region_id: "cn-hangzhou",
-        access_key_id: "sample",
-        access_key_secret: "secret",
-        address_type: 1,
-        reply_to_address: true,
-        click_trace: 1
-
-      # Define a Mailer. Maybe in lib/my_app/mailer.ex
-      defmodule MyApp.Mailer do
-        use Bamboo.Mailer, otp_app: :my_app
-      end
+  ```elixir
+  # In config/config.exs, or config.prod.exs, etc.
+  config :my_app, MyApp.Mailer,
+    adapter: Bamboo.AliyunAdapter,
+    uri: "https://dm.aliyuncs.com",
+    version: "2015-11-23",
+    region_id: "cn-hangzhou",
+    access_key_id: "sample",
+    access_key_secret: "secret",
+    address_type: 1,
+    reply_to_address: true,
+    click_trace: 1
+  ```
   """
   @behaviour Bamboo.Adapter
 
@@ -120,7 +115,8 @@ defmodule Bamboo.AliyunAdapter do
   end
 
   defp gen_nonce do
-    :crypto.strong_rand_bytes(24)
+    24
+    |> :crypto.strong_rand_bytes()
     |> :base64.encode()
   end
 
