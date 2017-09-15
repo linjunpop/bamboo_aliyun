@@ -1,7 +1,7 @@
 defmodule Bamboo.Aliyun.Mixfile do
   use Mix.Project
 
-  @version "0.2.0"
+  @version "0.1.0"
   @project_url "https://github.com/linjunpop/bamboo_aliyun"
 
   def project do
