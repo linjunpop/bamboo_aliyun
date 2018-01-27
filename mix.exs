@@ -13,13 +13,16 @@ defmodule Bamboo.Aliyun.Mixfile do
       homepage_url: @project_url,
       name: "Bamboo Aliyun Adapter",
       description: "A Bamboo adapter for Aliyun",
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
       package: package(),
       deps: deps(),
       preferred_cli_env: [
-        vcr: :test, "vcr.delete": :test, "vcr.check": :test, "vcr.show": :test
-      ],
+        vcr: :test,
+        "vcr.delete": :test,
+        "vcr.check": :test,
+        "vcr.show": :test
+      ]
     ]
   end
 
@@ -44,7 +47,6 @@ defmodule Bamboo.Aliyun.Mixfile do
     [
       {:bamboo, "~> 0.5"},
       {:hackney, "~> 1.6"},
-
       {:cowboy, "~> 1.0", only: [:test, :dev]},
       {:ex_doc, "~> 0.16", only: :dev},
       {:credo, "~> 0.8", only: [:dev, :test]},

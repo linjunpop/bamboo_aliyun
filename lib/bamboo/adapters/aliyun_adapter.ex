@@ -29,7 +29,7 @@ defmodule Bamboo.AliyunAdapter do
   @impl Bamboo.Adapter
   def deliver(email, config) do
     headers = [
-      {"Content-Type", "application/x-www-form-urlencoded"},
+      {"Content-Type", "application/x-www-form-urlencoded"}
     ]
 
     body =
@@ -41,8 +41,10 @@ defmodule Bamboo.AliyunAdapter do
     case :hackney.post(config.uri, headers, URI.encode_query(body), [:with_body]) do
       {:ok, status, _headers, response} when status > 299 ->
         ApiError.raise_api_error(@service_name, response, body)
+
       {:ok, status, headers, response} ->
         %{status_code: status, headers: headers, body: response}
+
       {:error, reason} ->
         ApiError.raise_api_error(inspect(reason))
     end
@@ -50,11 +52,21 @@ defmodule Bamboo.AliyunAdapter do
 
   @impl Bamboo.Adapter
   def handle_config(config) do
-    for setting <- [:uri, :version, :region_id, :access_key_id, :access_key_secret, :address_type, :reply_to_address, :click_trace] do
+    for setting <- [
+          :uri,
+          :version,
+          :region_id,
+          :access_key_id,
+          :access_key_secret,
+          :address_type,
+          :reply_to_address,
+          :click_trace
+        ] do
       if config[setting] in [nil, ""] do
         raise_missing_setting_error(config, setting)
       end
     end
+
     config
   end
 
@@ -64,7 +76,7 @@ defmodule Bamboo.AliyunAdapter do
 
     Here are the config options that were passed in:
 
-    #{inspect config}
+    #{inspect(config)}
     """
   end
 
@@ -87,7 +99,7 @@ defmodule Bamboo.AliyunAdapter do
     signature =
       req
       |> Enum.sort()
-      |> Enum.map(fn ({key, item}) -> "#{percent_encode(key)}=#{percent_encode(item)}" end)
+      |> Enum.map(fn {key, item} -> "#{percent_encode(key)}=#{percent_encode(item)}" end)
       |> Enum.join("&")
 
     signature = "POST" <> "&%2F&" <> percent_encode(signature)
@@ -103,11 +115,12 @@ defmodule Bamboo.AliyunAdapter do
 
   defp percent_encode(str) when is_binary(str) do
     str
-    |> URI.encode_www_form
+    |> URI.encode_www_form()
     |> String.replace("+", "%20")
     |> String.replace("*", "%2A")
     |> String.replace("%7E", "~")
   end
+
   defp percent_encode(value) do
     value
     |> to_string()
@@ -122,7 +135,7 @@ defmodule Bamboo.AliyunAdapter do
 
   defp to_aliyun_body(%Email{} = email, config) do
     email
-    |> Map.from_struct
+    |> Map.from_struct()
     |> put_subject(email)
     |> put_from(email)
     |> put_to(email)
@@ -144,6 +157,7 @@ defmodule Bamboo.AliyunAdapter do
       {nil, email} ->
         body
         |> Map.put(:AccountName, email)
+
       {name, email} ->
         body
         |> Map.put(:FromAlias, name)
@@ -163,6 +177,7 @@ defmodule Bamboo.AliyunAdapter do
     |> Enum.map(&do_transform_email/1)
     |> Enum.join(",")
   end
+
   defp do_transform_email({_name, email}) do
     # name is not supported
     email
@@ -173,8 +188,8 @@ defmodule Bamboo.AliyunAdapter do
   defp put_text_body(body, %Email{text_body: text_body}), do: Map.put(body, :TextBody, text_body)
 
   defp filter_non_aliyun_dm_fields(map) do
-    Enum.filter(map, fn({key, value}) ->
-      (key in @aliyun_dm_fields) && !(value in [nil, "", []])
+    Enum.filter(map, fn {key, value} ->
+      key in @aliyun_dm_fields && !(value in [nil, "", []])
     end)
   end
 end

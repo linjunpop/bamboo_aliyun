@@ -21,7 +21,7 @@ defmodule Bamboo.AliyunAdapterTest do
     email = new_email(
       subject: "My Subject",
       text_body: "TEXT BODY",
-      html_body: "HTML BODY",
+      html_body: "HTML BODY"
     )
 
     use_cassette "success_sample" do
