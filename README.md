@@ -9,7 +9,7 @@ by adding `bamboo_aliyun` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:bamboo_aliyun, "~> 0.1.0"}]
+  [{:bamboo_aliyun, "~> 0.2.0"}]
 end
 ```
 
@@ -47,4 +47,3 @@ email =
 ## Docs
 
 [https://hexdocs.pm/bamboo_aliyun](https://hexdocs.pm/bamboo_aliyun).
-

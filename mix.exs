@@ -1,7 +1,7 @@
 defmodule Bamboo.Aliyun.Mixfile do
   use Mix.Project
 
-  @version "0.1.0"
+  @version "0.2.0"
   @project_url "https://github.com/linjunpop/bamboo_aliyun"
 
   def project do
@@ -34,15 +34,6 @@ defmodule Bamboo.Aliyun.Mixfile do
     [extra_applications: [:logger]]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:my_dep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:my_dep, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options
   defp deps do
     [
       {:bamboo, "~> 1.0"},
