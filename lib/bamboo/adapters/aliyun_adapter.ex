@@ -24,7 +24,8 @@ defmodule Bamboo.AliyunAdapter do
   @service_name "Aliyun"
 
   alias Bamboo.Email
-  alias Bamboo.AliyunAdapter.ApiError
+
+  import Bamboo.ApiError
 
   @impl Bamboo.Adapter
   def deliver(email, config) do
@@ -40,13 +41,13 @@ defmodule Bamboo.AliyunAdapter do
 
     case :hackney.post(config.uri, headers, URI.encode_query(body), [:with_body]) do
       {:ok, status, _headers, response} when status > 299 ->
-        ApiError.raise_api_error(@service_name, response, body)
+        raise_api_error(@service_name, response, body)
 
       {:ok, status, headers, response} ->
         %{status_code: status, headers: headers, body: response}
 
       {:error, reason} ->
-        ApiError.raise_api_error(inspect(reason))
+        raise_api_error(inspect(reason))
     end
   end
 

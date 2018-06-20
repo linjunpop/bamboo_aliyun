@@ -45,7 +45,7 @@ defmodule Bamboo.Aliyun.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:bamboo, "~> 0.5"},
+      {:bamboo, "~> 1.0"},
       {:hackney, "~> 1.6"},
       {:cowboy, "~> 1.0", only: [:test, :dev]},
       {:ex_doc, "~> 0.16", only: :dev},
